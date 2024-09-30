@@ -6,7 +6,7 @@ public class WhiteBless : MonoBehaviour
 {
     //パーティクルのアタッチを行う
     [SerializeField]
-    private ParticleSystem m_whiteBless
+    private ParticleSystem m_whiteBless;
     
     private void Update()
     {

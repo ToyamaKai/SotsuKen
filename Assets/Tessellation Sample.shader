@@ -10,6 +10,7 @@ Shader "Tessellation Sample" {
     }
         SubShader{
             Tags { "RenderType" = "Opaque" }
+            Tags{ "TerrainCompatible" = "true" }
             LOD 300
 
             CGPROGRAM
