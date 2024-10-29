@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &44365354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5346,7 +5346,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &963194226
 AudioListener:
   m_ObjectHideFlags: 0
@@ -10477,14 +10477,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1807699696}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44bb3618e133ddb4c883dbb1cab493c5, type: 3}
+  m_Script: {fileID: 11500000, guid: 0d368d91606252c4f9aa7b4fbae6083d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outlineShader: {fileID: 4800000, guid: 60a1f5a1373c23f45926ea99b1bf61ac, type: 3}
-  outlineColor: {r: 0, g: 0, b: 0, a: 1}
-  outlineThickness: 1
-  depthThreshold: 0.01
-  normalThreshold: 0.1
+  mat: {fileID: 2100000, guid: 64ef5d04940b31343adaf3d56b996aab, type: 2}
 --- !u!1 &1920553810
 GameObject:
   m_ObjectHideFlags: 0
