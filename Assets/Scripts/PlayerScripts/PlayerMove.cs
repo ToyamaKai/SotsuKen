@@ -1,50 +1,55 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 [RequireComponent(typeof(Rigidbody))]
-
-public class PlayerMove : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    [Header("移動速度"), Range(0, 30)]
-    public float moveSpeed = 5.0f;
+    [SerializeField]
+    float m_speed = 5f;
 
-    private Rigidbody rigidBody;
+    [SerializeField]
+    Rigidbody m_rb;
 
-    // Use this for initialization
-    private void Awake()
+    [SerializeField]
+    Animator m_animator;
+
+    void Awake()
     {
-        rigidBody = GetComponent<Rigidbody>();
-        if (rigidBody == null)
-        {
-            Debug.LogError("Unable to GetComponent rigidbody at Awake");
-        }
-        else if (rigidBody.isKinematic && this.enabled)
-        {
-            Debug.LogWarning("Rigidbody is Kinematic");
-        }
     }
 
-    private void FixedUpdate()
+    void Update()
     {
-        // 入力の取得
-        float input = Input.GetAxis("Vertical"); // W: +1, S: -1, 他: 0
+        PlayerMove();
+    }
 
-        // 入力に基づいて移動方向を計算
-        Vector3 direction = transform.forward * input;
+    private void PlayerMove()
+    {
+        float v = Input.GetAxisRaw("Vertical");
+        float h = Input.GetAxisRaw("Horizontal");
 
-        // 移動処理
-        if (input != 0)
+        if (Input.GetKey(KeyCode.W))
         {
-            // Rigidbodyに力を加えることで移動させる
-            rigidBody.AddForce(direction * moveSpeed, ForceMode.VelocityChange);
+            m_animator.SetBool("isWalking", true);
+            m_rb.velocity = new Vector3(v, 0, 0).normalized * m_speed;
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            m_animator.SetBool("isWalking", true);
+            m_rb.velocity = new Vector3(v, 0, 0).normalized * m_speed;
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            m_animator.SetBool("isWalking", true);
+            m_rb.velocity = new Vector3(0, 0, -h).normalized * m_speed;
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            m_animator.SetBool("isWalking", true);
+            m_rb.velocity = new Vector3(0, 0, -h).normalized * m_speed;
         }
         else
         {
-            // 停止時に速度をリセット
-            rigidBody.velocity = Vector3.zero;
+            m_animator.SetBool("isWalking", false);
+            m_rb.velocity = new Vector3(0, 0, 0).normalized * m_speed;
         }
     }
 }
-
