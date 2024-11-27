@@ -81,15 +81,15 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Level: 0.002
+    - _Level: 0.003
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RoundTrip: 185
+    - _RoundTrip: 58
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 3.68
+    - _Speed: 8.6
     - _SrcBlend: 1
     - _Tess: 10
     - _UVSec: 0

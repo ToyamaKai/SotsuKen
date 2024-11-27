@@ -178,7 +178,7 @@ Camera:
   m_GameObject: {fileID: 149655444}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 4
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -205,10 +205,10 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: 1
+  m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 0
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -492,7 +492,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: 1
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 8
@@ -644,7 +644,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aa29b292d95f9f48a5ef9e0f41529a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
+  target: {fileID: 0}
+  distance: 5
+  rotationSpeed: 5
+  height: 1.7
 --- !u!198 &319012722 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 198554520258542654, guid: 7168c0190d7d71f49ac1cd677d6c5883, type: 3}
@@ -1731,7 +1734,7 @@ Camera:
   m_GameObject: {fileID: 809156361}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 4
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -1758,10 +1761,10 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 55
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -12544,7 +12547,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aa29b292d95f9f48a5ef9e0f41529a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 265838553}
+  target: {fileID: 0}
+  distance: 5
+  rotationSpeed: 5
+  height: 1.7
 --- !u!114 &2100157751
 MonoBehaviour:
   m_ObjectHideFlags: 0
