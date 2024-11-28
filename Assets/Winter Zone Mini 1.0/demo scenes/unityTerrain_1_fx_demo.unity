@@ -639,12 +639,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 33952726}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1aa29b292d95f9f48a5ef9e0f41529a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 307202180}
   distance: 5
   rotationSpeed: 5
   height: 1.7
@@ -733,6 +733,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 493106701002124440, guid: 7feee23927ee6c14a9947d29f4c6b130, type: 3}
+      propertyPath: m_dash
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1793003399721014188, guid: 7feee23927ee6c14a9947d29f4c6b130, type: 3}
       propertyPath: m_Layer
       value: 3
