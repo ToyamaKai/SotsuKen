@@ -3,22 +3,13 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
-    float m_speed = 5f;
+    float m_speed = 5f; // 通常の移動速度
+    float m_dash; // ダッシュ時の倍率
+    const float k_runSpeed = 1.5f; // ダッシュ速度倍率
 
-    float m_dash;
-
-    const float k_runSpeed = 1.5f;
-
-
-    [SerializeField]
-    Rigidbody m_rb;
-
-    [SerializeField]
-    Animator m_animator;
-
-    void Awake()
-    {
-    }
+    [SerializeField] Rigidbody m_rb; // Rigidbody
+    [SerializeField] Animator m_animator; // Animator
+    [SerializeField] Transform cameraTransform; // カメラのTransformを指定
 
     void Update()
     {
@@ -27,137 +18,45 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerMove()
     {
+        // 入力を取得
         float v = Input.GetAxisRaw("Vertical");
         float h = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetKey(KeyCode.W))
-        {
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                m_animator.SetBool("isWalking", false);
-                m_animator.SetBool("isRun", true);
-                m_dash = k_runSpeed;
-            }
-            else
-            {
-                m_animator.SetBool("isWalking", true);
-                m_animator.SetBool("isRun", false);
-                m_dash = 1.0f;
-            }
+        // カメラの向きに基づく移動方向を計算
+        Vector3 forward = cameraTransform.forward;
+        Vector3 right = cameraTransform.right;
 
-            if (Input.GetKey(KeyCode.A))
-            {
-                this.gameObject.transform.localEulerAngles = new Vector3(0, 45, 0);
-                m_rb.velocity = new Vector3(v, 0, -h).normalized * m_speed * m_dash;
-            }
-            else if(Input.GetKey(KeyCode.D))
-            {
-                this.gameObject.transform.localEulerAngles = new Vector3(0, 135, 0);
-                m_rb.velocity = new Vector3(v, 0, -h).normalized * m_speed * m_dash;
-            }
-            else
-            {
-                this.gameObject.transform.localEulerAngles = new Vector3(0, 90, 0);
-                m_rb.velocity = new Vector3(v, 0, 0).normalized * m_speed * m_dash;
-            }
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                m_animator.SetBool("isWalking", false);
-                m_animator.SetBool("isRun", true);
-                m_dash = k_runSpeed;
-            }
-            else
-            {
-                m_animator.SetBool("isWalking", true);
-                m_animator.SetBool("isRun", false);
-                m_dash = 1.0f;
-            }
+        // 水平面のみに制限
+        forward.y = 0f;
+        right.y = 0f;
+        forward.Normalize();
+        right.Normalize();
 
-            if (Input.GetKey(KeyCode.A))
-            {
-                this.gameObject.transform.localEulerAngles = new Vector3(0, 315, 0);
-                m_rb.velocity = new Vector3(v, 0, -h).normalized * m_speed * m_dash;
-            }
-            else if (Input.GetKey(KeyCode.D))
-            {
-                this.gameObject.transform.localEulerAngles = new Vector3(0, 225, 0);
-                m_rb.velocity = new Vector3(v, 0, -h).normalized * m_speed * m_dash;
-            }
-            else
-            {
-                this.gameObject.transform.localEulerAngles = new Vector3(0, 270, 0);
-                m_rb.velocity = new Vector3(v, 0, 0).normalized * m_speed * m_dash;
-            }
-        }
-        else if (Input.GetKey(KeyCode.A))
-        {
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                m_animator.SetBool("isWalking", false);
-                m_animator.SetBool("isRun", true);
-                m_dash = k_runSpeed;
-            }
-            else
-            {
-                m_animator.SetBool("isWalking", true);
-                m_animator.SetBool("isRun", false);
-                m_dash = 1.0f;
-            }
+        // 入力方向をカメラ基準で変換
+        Vector3 movement = (forward * v + right * h).normalized * m_speed * m_dash;
 
-            if (Input.GetKey(KeyCode.W))
-            {
-                this.gameObject.transform.localEulerAngles = new Vector3(0, 45, 0);
-                m_rb.velocity = new Vector3(v, 0, -h).normalized * m_speed * m_dash;
-            }
-            else if (Input.GetKey(KeyCode.S))
-            {
-                this.gameObject.transform.localEulerAngles = new Vector3(0, 315, 0);
-                m_rb.velocity = new Vector3(v, 0, -h).normalized * m_speed * m_dash;
-            }
-            else
-            {
-                this.gameObject.transform.localEulerAngles = new Vector3(0, 0, 0);
-                m_rb.velocity = new Vector3(0, 0, -h).normalized * m_speed * m_dash;
-            }
-        }
-        else if (Input.GetKey(KeyCode.D))
+        // ダッシュ判定
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                m_animator.SetBool("isWalking", false);
-                m_animator.SetBool("isRun", true);
-                m_dash = k_runSpeed;
-            }
-            else
-            {
-                m_animator.SetBool("isWalking", true);
-                m_animator.SetBool("isRun", false);
-                m_dash = 1.0f;
-            }
-            if (Input.GetKey(KeyCode.W))
-            {
-                this.gameObject.transform.localEulerAngles = new Vector3(0, 135, 0);
-                m_rb.velocity = new Vector3(v, 0, -h).normalized * m_speed * m_dash;
-            }
-            else if (Input.GetKey(KeyCode.S))
-            {
-                this.gameObject.transform.localEulerAngles = new Vector3(0, 225, 0);
-                m_rb.velocity = new Vector3(v, 0, -h).normalized * m_speed * m_dash;
-            }
-            else
-            {
-                this.gameObject.transform.localEulerAngles = new Vector3(0, 180, 0);
-                m_rb.velocity = new Vector3(0, 0, -h).normalized * m_speed * m_dash;
-            }
+            m_dash = k_runSpeed;
+            m_animator.SetBool("isWalking", false);
+            m_animator.SetBool("isRun", true);
         }
         else
         {
-            m_animator.SetBool("isWalking", false);
+            m_dash = 1.0f;
+            m_animator.SetBool("isWalking", v != 0 || h != 0);
             m_animator.SetBool("isRun", false);
-            m_rb.velocity = new Vector3(0, 0, 0);
         }
+
+        // キャラクターの回転
+        if (movement.magnitude > 0)
+        {
+            transform.rotation = Quaternion.LookRotation(movement);
+        }
+
+        // Rigidbodyの速度を設定
+        Vector3 velocity = new Vector3(movement.x, m_rb.velocity.y, movement.z);
+        m_rb.velocity = velocity;
     }
 }
