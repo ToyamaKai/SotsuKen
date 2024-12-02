@@ -1731,7 +1731,7 @@ MonoBehaviour:
   mouseSensitivity: 100
   obstructionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
 --- !u!81 &809156364
 AudioListener:
   m_ObjectHideFlags: 0
