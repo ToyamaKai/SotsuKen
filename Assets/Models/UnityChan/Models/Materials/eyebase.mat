@@ -25,6 +25,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap:
     IgnoreProjection: False
+    RenderType: Opaque
   disabledShaderPasses:
   - ALWAYS
   m_LockedProperties: 
@@ -420,6 +421,7 @@ Material:
     - _SecondShadeVisible: 1
     - _Set_SystemShadowsToBase: 0
     - _ShadeColor_Step: 0
+    - _Shininess: 10
     - _Smoothness: 0.5
     - _SmoothnessRemapMax: 1
     - _SmoothnessRemapMin: 0
@@ -502,8 +504,8 @@ Material:
     - _simpleUI: 0
     - _utsTechnique: 0
     - _utsVersionX: 0
-    - _utsVersionY: 8
-    - _utsVersionZ: 5
+    - _utsVersionY: 10
+    - _utsVersionZ: 2
     m_Colors:
     - _1st_ShadeColor: {r: 1, g: 0.85882354, b: 0.78039217, a: 1}
     - _2nd_ShadeColor: {r: 0.8, g: 0.8, b: 1, a: 1}

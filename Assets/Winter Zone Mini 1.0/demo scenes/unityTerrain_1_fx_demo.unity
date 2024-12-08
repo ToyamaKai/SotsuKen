@@ -699,6 +699,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4974918076857478, guid: 7168c0190d7d71f49ac1cd677d6c5883, type: 3}
   m_PrefabInstance: {fileID: 1022065117}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &565015569
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 565015571}
+  - component: {fileID: 565015570}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &565015570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565015569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6cf26555fcf1ac4e90b3144bfa1b91e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overlayMaterial: {fileID: 2100000, guid: ca131910d5c9a634dbdd38e77111033f, type: 2}
+  fadeDuration: 100000000
+--- !u!4 &565015571
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565015569}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 115.04676, y: 41.6844, z: 116.32695}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &575252318
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1531,6 +1577,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8726425519096651824, guid: 7feee23927ee6c14a9947d29f4c6b130, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8726425519096651824, guid: 7feee23927ee6c14a9947d29f4c6b130, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: bd5481d8b073f7f4c90f56f577d32bb8, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1096146838526994720, guid: 7feee23927ee6c14a9947d29f4c6b130, type: 3}
@@ -7919,3 +7973,4 @@ SceneRoots:
   - {fileID: 1153279482}
   - {fileID: 915378804}
   - {fileID: 575252318}
+  - {fileID: 565015571}
