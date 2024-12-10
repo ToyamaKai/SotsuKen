@@ -18,7 +18,7 @@ public class Settings : MonoBehaviour
 
     static public float    MouseSensitivity = 2;
     static public int       MouseJougeInversion = 1;
-    static public int       MouseSayuuInversion = -1;
+    static public int       MouseSayuuInversion = 1;
 
     private void Start()
     {
@@ -61,12 +61,12 @@ public class Settings : MonoBehaviour
     {
         if (MouseSayuuInversion == 1)
         {
-            sayuutext.text = "オフ";
+            sayuutext.text = "オン";
             MouseSayuuInversion = -1;
         }
         else
         {
-            sayuutext.text = "オン";
+            sayuutext.text = "オフ";
             MouseSayuuInversion = 1;
         }
     }
