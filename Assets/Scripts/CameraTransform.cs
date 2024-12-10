@@ -11,11 +11,17 @@ public class CameraController : MonoBehaviour
     private float yaw = 0f; // …•½•ûŒü‚Ì‰ñ“]
     private float pitch = 0f; // ‚’¼•ûŒü‚Ì‰ñ“]
 
+    private Settings m_setting;
+
+    private void Start()
+    {
+    }
+
     void Update()
     {
         // ƒ}ƒEƒX‚ÌˆÚ“®—Ê‚ğæ“¾
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        float mouseX = Input.GetAxis("Mouse X") * Settings.MouseSensitivity * 50 * Time.deltaTime * Settings.MouseSayuuInversion;
+        float mouseY = Input.GetAxis("Mouse Y") * Settings.MouseSensitivity * 50 * Time.deltaTime * Settings.MouseJougeInversion;
 
         // ‰ñ“]Šp“x‚ğXV
         yaw += mouseX;
