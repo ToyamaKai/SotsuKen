@@ -6,14 +6,10 @@ public class Manager : MonoBehaviour
 {
     [SerializeField]
     GameObject m_setting;
+    [SerializeField]
+    Animator m_animator;
 
     static public int m_areaNumber;
-    // Start is called before the first frame update
-    void Start()
-    {
-        m_setting.SetActive(false);
-        m_areaNumber = 0;
-    }
 
     // Update is called once per frame
     void Update()
@@ -28,6 +24,15 @@ public class Manager : MonoBehaviour
             {
                 m_setting.SetActive(false);
             }
+        }
+
+        if(m_areaNumber != 0 && m_areaNumber != 4)
+        {
+            m_animator.SetBool("isCold", true);
+        }
+        else
+        {
+            m_animator.SetBool("isCold", false);
         }
     }
 }
