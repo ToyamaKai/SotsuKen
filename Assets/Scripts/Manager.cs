@@ -10,13 +10,15 @@ public class Manager : MonoBehaviour
     Animator m_animator;
     [SerializeField]
     ParticleSystem m_whiteDust;
+    [SerializeField]
+    PostEffect m_postEffect;
 
     static public int m_areaNumber;
 
     private void Start()
     {
-
         m_whiteDust.Stop();
+        m_postEffect.enabled = false;
     }
 
     // Update is called once per frame
@@ -33,20 +35,19 @@ public class Manager : MonoBehaviour
                 m_setting.SetActive(false);
             }
         }
-
-        if(m_areaNumber != 0 && m_areaNumber != 4)
+        if(m_areaNumber == 4)
         {
-            m_animator.SetBool("isCold", true);
-        }
-        else
-        {
-            m_animator.SetBool("isCold", false);
+            Area4Effect();
         }
     }
 
     public void Area4Effect()
     {
-        m_whiteDust.Stop();
+        if(!m_whiteDust.isPlaying)
+        {
+            m_whiteDust.Play();
+        }
         m_animator.SetBool("isCold", true);
+        m_postEffect.enabled = true;
     }
 }
