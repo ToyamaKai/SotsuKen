@@ -19,6 +19,7 @@ public class Manager : MonoBehaviour
     {
         m_whiteDust.Stop();
         m_postEffect.enabled = false;
+        Area4Effect();
     }
 
     // Update is called once per frame
