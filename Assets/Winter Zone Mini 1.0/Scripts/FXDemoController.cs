@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class FXDemoController : MonoBehaviour
 {
 
-    public Text txtFXMode;
+    //public Text txtFXMode;
     public GameObject fx_Storm;
     public GameObject fx_Blizzard;
     public GameObject fx_Snow;
@@ -14,7 +14,7 @@ public class FXDemoController : MonoBehaviour
 
     void Start ()
     {
-        txtFXMode.text = "Storm";        
+        //txtFXMode.text = "Storm";        
     }
 
     void Update()
@@ -31,7 +31,7 @@ public class FXDemoController : MonoBehaviour
 
     public void Storm()
     {
-        txtFXMode.text = "Storm";
+        //txtFXMode.text = "Storm";
         turnOff_FX();
         fx_Storm.SetActive(true);
         fx_audio.SetActive(true);
@@ -40,7 +40,7 @@ public class FXDemoController : MonoBehaviour
 
     public void Blizzard()
     {
-        txtFXMode.text = "Blizzard";
+        //txtFXMode.text = "Blizzard";
         turnOff_FX();
         fx_Blizzard.SetActive(true);
         fx_audio.SetActive(true);
@@ -49,7 +49,7 @@ public class FXDemoController : MonoBehaviour
 
     public void Snow()
     {
-        txtFXMode.text = "Snow";
+        //txtFXMode.text = "Snow";
         turnOff_FX();
         fx_Snow.SetActive(true);
         Debug.Log("Snow");
@@ -57,7 +57,7 @@ public class FXDemoController : MonoBehaviour
 
     public void NoFX()
     {
-        txtFXMode.text = "No FX";
+        //txtFXMode.text = "No FX";
         turnOff_FX();
         Debug.Log("NoFX");
     }

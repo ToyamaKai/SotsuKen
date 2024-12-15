@@ -12,6 +12,8 @@ public class Manager : MonoBehaviour
     ParticleSystem m_whiteDust;
     [SerializeField]
     PostEffect m_postEffect;
+    [SerializeField]
+    GameObject m_FXseries;
 
     static public int m_areaNumber;
 
@@ -19,7 +21,7 @@ public class Manager : MonoBehaviour
     {
         m_whiteDust.Stop();
         m_postEffect.enabled = false;
-        Area4Effect();
+        m_FXseries.SetActive(false);
     }
 
     // Update is called once per frame
@@ -49,6 +51,7 @@ public class Manager : MonoBehaviour
             m_whiteDust.Play();
         }
         m_animator.SetBool("isCold", true);
+        m_FXseries.SetActive(true);
         m_postEffect.enabled = true;
     }
 }
