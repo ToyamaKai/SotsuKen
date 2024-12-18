@@ -89,12 +89,19 @@ public class Manager : MonoBehaviour
         {
             m_CharaEffect.enabled = false;
         }
+
+        if (m_CharaEffect.isActiveAndEnabled)
+        {
+            m_postEffect.enabled = false;
+        }
     }
 
     //エリア1は環境系エフェクト(吹雪・降雪・画面全体のラスタースクロール)
     public void Area1Effect()
     {
         m_FXseries.SetActive(true);
+
+        m_postEffect.enabled = true;
     }
 
     //エリア2はキャラ関係のエフェクト(モーション・テクスチャ・キャララスタースクロール)
@@ -104,6 +111,11 @@ public class Manager : MonoBehaviour
         {
             m_animator.SetBool("isCold", true);
         }
+
+        m_CharaEffect.enabled = true;
+        m_CharaEffect2.enabled = true;
+
+        //テクスチャ変化ってどうしよう
     }
 
     //エリア3は要検討
