@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 movement = (forward * v + right * h).normalized * m_speed * m_dash;
 
         // ダッシュ判定
-        if (Input.GetKey(KeyCode.LeftShift))
+        if ((v != 0 || h != 0) && Input.GetKey(KeyCode.LeftShift)) // 移動している & Shiftキーが押されている
         {
             m_dash = k_runSpeed;
             m_animator.SetBool("isWalking", false);
@@ -59,4 +59,5 @@ public class PlayerMovement : MonoBehaviour
         Vector3 velocity = new Vector3(movement.x, m_rb.velocity.y, movement.z);
         m_rb.velocity = velocity;
     }
+
 }
