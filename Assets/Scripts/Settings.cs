@@ -70,4 +70,13 @@ public class Settings : MonoBehaviour
             MouseSayuuInversion = 1;
         }
     }
+
+    public void CloseGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;//ゲームプレイ終了
+#else
+    Application.Quit();//ゲームプレイ終了
+#endif
+    }
 }

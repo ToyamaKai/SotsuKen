@@ -7,6 +7,8 @@ public class Manager : MonoBehaviour
     [SerializeField]
     GameObject m_setting;
     [SerializeField]
+    GameObject m_operate;
+    [SerializeField]
     Animator m_animator;
     [SerializeField]
     ParticleSystem m_whiteDust;
@@ -19,22 +21,44 @@ public class Manager : MonoBehaviour
     [SerializeField]
     GameObject m_FXseries;
 
+    [SerializeField]
+    Renderer m_body;
+    [SerializeField]
+    Texture m_chilblainsBody;
+    [SerializeField]
+    Texture m_bodytex;
+
+    [SerializeField]
+    Renderer m_face;
+    [SerializeField]
+    Renderer m_eyes;
+    [SerializeField]
+    Texture m_chilblainsface;
+    [SerializeField]
+    Texture m_facetex;
+
+    [SerializeField]
+    ParticleSystem m_whiteBless;
+
     static public int m_areaNumber;
+
+    float timer = 0f;
 
     private void Start()
     {
         m_whiteDust.Stop();
         m_CharaEffect.enabled = false;
         m_FXseries.SetActive(false);
+        m_operate.SetActive(true);
+        m_setting.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(m_areaNumber);
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            if(m_setting.activeSelf == false)
+            if(!m_setting.activeSelf && !m_operate.activeSelf)
             {
                 m_setting.SetActive(true);
             }
@@ -94,6 +118,9 @@ public class Manager : MonoBehaviour
         {
             m_postEffect.enabled = false;
         }
+
+
+        SwitchTexture(true); ;
     }
 
     //エリア1は環境系エフェクト(吹雪・降雪・画面全体のラスタースクロール)
@@ -115,7 +142,8 @@ public class Manager : MonoBehaviour
         m_CharaEffect.enabled = true;
         m_CharaEffect2.enabled = true;
 
-        //テクスチャ変化ってどうしよう
+        SwitchTexture(false);
+        hoge();
     }
 
     //エリア3は要検討
@@ -124,7 +152,7 @@ public class Manager : MonoBehaviour
 
     }
 
-    //エリア4は全盛り朝食バイキングくらい
+    //エリア4は全盛り
     public void Area4Effect()
     {
         if (!m_whiteDust.isPlaying)
@@ -134,5 +162,41 @@ public class Manager : MonoBehaviour
         m_animator.SetBool("isCold", true);
         m_FXseries.SetActive(true);
         m_CharaEffect.enabled = true;
+        SwitchTexture(false);
+        hoge();
+    }
+
+    private void SwitchTexture(bool isTexture2)
+    {
+        if(!isTexture2)
+        {
+            m_body.material.mainTexture = m_chilblainsBody;
+            m_face.material.mainTexture = m_chilblainsface;
+            m_eyes.material.mainTexture = m_chilblainsface;
+        }
+        else
+        {
+            m_body.material.mainTexture = m_bodytex;
+            m_face.material.mainTexture = m_facetex;
+            m_eyes.material.mainTexture = m_facetex;
+        }
+    }
+
+    public void CloseOperate()
+    {
+        m_operate.SetActive(false);
+    }
+
+    private void hoge()
+    {
+        timer += Time.deltaTime;
+        if(timer >= 5.0f)
+        {
+            if(m_whiteBless != null)
+            {
+                m_whiteBless.Play();
+            }
+            timer = 0f;
+        }
     }
 }
