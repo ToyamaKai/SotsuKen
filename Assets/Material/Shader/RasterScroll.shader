@@ -1,58 +1,61 @@
-Shader "Custom/RasterScroll" {
-    Properties{
-        _MainTex("MainTex", 2D) = "white" {}
-        _Level("Level", Range(0, 10)) = 0.2
-        _Speed("Speed", Range(0, 10)) = 0.5
-        _RoundTrip("RoundTrip", Range(1, 1000)) = 1
-    }
-        SubShader{
-            Pass {
-                CGPROGRAM
-                #pragma vertex vert
-                #pragma fragment frag
-                #include "UnityCG.cginc"
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 
-                struct appdata_t {
-                    float4 vertex:POSITION;
-                    float3 normal:NORMAL;
-                    float4 texcoord:TEXCOORD0;
-                };
+Shader "Custom/RasterScroll"{
+	Properties{
+		_MainTex("MainTex", 2D) = "white" {}
+		_Level("Level", Range(0, 100)) = 0.2
+		_Speed("Speed", Range(0, 300)) = 0.5
+		_RoundTrip("RoundTrip", Range(1, 500)) = 1
+	}
+		SubShader{
+			Pass{
+				CGPROGRAM
+				#pragma vertex vert
+				#pragma fragment frag
+				#include "UnityCG.cginc"
 
-                struct v2f {
-                    float4 pos:POSITION;
-                    float2 uv:TEXCOORD0;
-                };
+				struct appdata_t
+				{
+					float4 vertex:POSITION;
+					float3 normal:NORMAL;
+					float4 texcoord:TEXCOORD0;
+				};
 
-                sampler2D _MainTex;
-                float4 _MainTex_ST;
-                float _Level;
-                float _Speed;
-                float _RoundTrip;
+				struct v2f
+				{
+					float4 pos:POSITION;
+					float2 uv:TEXCOORD0;
+				};
 
-                v2f vert(appdata_t v) {
-                    v2f o;
-                    o.pos = UnityObjectToClipPos(v.vertex);
-                    o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);
-                    return o;
-                }
+				sampler2D _MainTex;
+				float4 _MainTex_ST;
+				float _Level;
+				float _Speed;
+				float _RoundTrip;
 
-                float4 frag(v2f i) :COLOR {
-                    // 時間ベースで動く波形のオフセット
-                    float time = _Time.y * _Speed;
-                // sin関数による動きはtimeを基準に計算する
-                float dy = time - floor(time); // 時間のループ
-                float dx = sin(radians((i.uv.y - dy) * 360 * floor(_RoundTrip))) * _Level;
+				v2f vert(appdata_t v)
+				{
+					v2f o;
+					o.pos = UnityObjectToClipPos(v.vertex);
+					o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);
+					return o;
+				}
 
-                // 新たに、視点に依存せず、y座標に基づいて動く
-                float2 uv = float2(i.uv.x + dx, i.uv.y);
-
-                // x座標が範囲外になっているものは黒で塗りつぶす
-                if (uv.x < 0 || uv.x > 1)
-                    return float4(0, 0, 0, 0);
-
-                return tex2D(_MainTex, uv);
-            }
-            ENDCG
-        }
-        }
+				float4 frag(v2f i) :COLOR{
+					//1秒で _Speed ずつ加算されるタイムの作成
+					float time = _Time.y * _Speed;
+				//y座標(0 ~ 1)における波形のスタート位置のズレ
+				float dy = time - floor(time);
+				//x座標(0 ~ 1)のズレ
+				float dx = sin(radians((i.uv.y - dy) * 360 * floor(_RoundTrip))) * _Level;
+				//ピクセルの位置を計算
+				float2 uv = float2(i.uv.x + dx, i.uv.y);
+				//x座標が範囲外になってるものは黒で塗りつぶす
+				if (uv.x < 0 || 1 < uv.x)
+					return float4(0, 0, 0, 0);
+				return tex2D(_MainTex, uv);
+			}
+			ENDCG
+		}
+		}
 }

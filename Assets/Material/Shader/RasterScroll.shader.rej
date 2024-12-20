@@ -1,0 +1,44 @@
+diff a/Assets/Material/Shader/RasterScroll.shader b/Assets/Material/Shader/RasterScroll.shader	(rejected hunks)
+@@ -29,29 +29,30 @@
+                 float _Speed;
+                 float _RoundTrip;
+ 
+-                v2f vert(appdata_t v)
+-                {
++                v2f vert(appdata_t v) {
+                     v2f o;
+                     o.pos = UnityObjectToClipPos(v.vertex);
+                     o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);
+                     return o;
+                 }
+ 
+-                float4 frag(v2f i) :COLOR{
+-                    //1�b�� _Speed �����Z�����^�C���̍쐬
++                float4 frag(v2f i) :COLOR {
++                    // ���ԃx�[�X�œ����g�`�̃I�t�Z�b�g
+                     float time = _Time.y * _Speed;
+-                //y���W(0 ~ 1)�ɂ�����g�`�̃X�^�[�g�ʒu�̃Y��
+-                float dy = time - floor(time);
+-                //x���W(0 ~ 1)�̃Y��
++                // sin�֐��ɂ�铮����time���Ɍv�Z����
++                float dy = time - floor(time); // ���Ԃ̃��[�v
+                 float dx = sin(radians((i.uv.y - dy) * 360 * floor(_RoundTrip))) * _Level;
+-                //�s�N�Z���̈ʒu��v�Z
++
++                // �V���ɁA���_�Ɉˑ������Ay���W�Ɋ�Â��ē���
+                 float2 uv = float2(i.uv.x + dx, i.uv.y);
+-                //x���W���͈͊O�ɂȂ��Ă��͍̂��œh��Ԃ�
+-                if (uv.x < 0 || 1 < uv.x)
++
++                // x���W���͈͊O�ɂȂ��Ă����͍̂��œh��Ԃ�
++                if (uv.x < 0 || uv.x > 1)
+                     return float4(0, 0, 0, 0);
++
+                 return tex2D(_MainTex, uv);
+             }
+             ENDCG
+         }
+         }
+-}
+\ No newline at end of file
++}
