@@ -11,7 +11,6 @@ public class Navigate : MonoBehaviour
 
     private List<int> remainingNumbers = new List<int> { 1, 2, 3, 4 };
     private int selectedNumber;
-    private int index = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +26,7 @@ public class Navigate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player") &&  remainingNumbers.Count > 0)
+        if (other.CompareTag("Player") && remainingNumbers.Count > 0)
         {
             SelectRandomNumber();
             other.transform.position = new Vector3(0, 34, 0);
@@ -37,10 +36,16 @@ public class Navigate : MonoBehaviour
 
     private void SelectRandomNumber()
     {
-        if(remainingNumbers.Count > 0)
+        if (remainingNumbers.Count > 0)
         {
+            // ランダムに番号を選択
             int randomIndex = Random.Range(0, remainingNumbers.Count);
             selectedNumber = remainingNumbers[randomIndex];
+
+            // 使用済みの番号をリストから削除
+            remainingNumbers.RemoveAt(randomIndex);
+
+            // 位置を変更
             ChangePosition(selectedNumber);
         }
         else
@@ -51,19 +56,19 @@ public class Navigate : MonoBehaviour
 
     private void ChangePosition(int hoge)
     {
-        if(hoge == 1)
+        if (hoge == 1)
         {
             transform.position = new Vector3(-353, 377, 59);
         }
-        else if(hoge == 2)
+        else if (hoge == 2)
         {
             transform.position = new Vector3(282.6f, 377, 342.1f);
         }
-        else if(hoge == 3)
+        else if (hoge == 3)
         {
             transform.position = new Vector3(-271, 377, -411);
         }
-        else if(hoge == 4)
+        else if (hoge == 4)
         {
             transform.position = new Vector3(373, 377, -424.7f);
         }

@@ -26,6 +26,8 @@ public class Manager : MonoBehaviour
     [SerializeField]
     Texture m_chilblainsBody;
     [SerializeField]
+    Texture m_chilblainsBody2;
+    [SerializeField]
     Texture m_bodytex;
 
     [SerializeField]
@@ -35,10 +37,27 @@ public class Manager : MonoBehaviour
     [SerializeField]
     Texture m_chilblainsface;
     [SerializeField]
+    Texture m_chilblainsface2;
+    [SerializeField]
     Texture m_facetex;
 
     [SerializeField]
     ParticleSystem m_whiteBless;
+
+    [SerializeField]
+    Material Material1;
+    [SerializeField]
+    Material Material2;
+    [SerializeField]
+    Material Material3;
+    [SerializeField]
+    Material Material4;
+
+    Shader standardShader;
+    Shader toonShader;
+
+    [SerializeField]
+    AnimationClip[] faceAnim;
 
     static public int m_areaNumber;
 
@@ -46,11 +65,14 @@ public class Manager : MonoBehaviour
 
     private void Start()
     {
+        standardShader = Shader.Find("Standard");
+        toonShader = Shader.Find("Toon");
         m_whiteDust.Stop();
         m_CharaEffect.enabled = false;
         m_FXseries.SetActive(false);
         m_operate.SetActive(true);
         m_setting.SetActive(false);
+        m_animator.SetLayerWeight(0, 1f);
     }
 
     // Update is called once per frame
@@ -104,7 +126,7 @@ public class Manager : MonoBehaviour
             m_animator.SetBool("isCold", false);
         }
 
-        if(m_FXseries.activeSelf)
+        if (m_FXseries.activeSelf)
         {
             m_FXseries.SetActive(false);
         }
@@ -120,7 +142,9 @@ public class Manager : MonoBehaviour
         }
 
 
-        SwitchTexture(true); ;
+        SwitchTexture(true);
+
+        ChangeMaterial();
     }
 
     //エリア1は環境系エフェクト(吹雪・降雪・画面全体のラスタースクロール)
@@ -129,27 +153,35 @@ public class Manager : MonoBehaviour
         m_FXseries.SetActive(true);
 
         m_postEffect.enabled = true;
+        ChangeMaterial();
     }
 
     //エリア2はキャラ関係のエフェクト(モーション・テクスチャ・キャララスタースクロール)
+    //寒がるモーション、しもやけテクスチャ(赤)、ラスタースクロール、モーションキーフレーム落とし、ローポリ化
     public void Area2Effect()
     {
-        if (m_animator.GetBool("isCold"))
-        {
-            m_animator.SetBool("isCold", true);
-        }
+        m_animator.SetBool("isCold", true);
 
         m_CharaEffect.enabled = true;
         m_CharaEffect2.enabled = true;
 
         SwitchTexture(false);
         hoge();
+        ChangeMaterial();
     }
 
-    //エリア3は要検討
+    //エリア3はエリア2の亜種(モーション・テクスチャ・キャララスタースクロール)
+    //寒がるモーション、しもやけテクスチャ(紫)、ラスタースクロール、モーションキーフレーム落とし、ローポリ化
     public void Area3Effect()
     {
+        m_animator.SetBool("isCold", true);
 
+        m_CharaEffect.enabled = true;
+        m_CharaEffect2.enabled = true;
+
+        SwitchTexture(false);
+        hoge();
+        ChangeMaterial();
     }
 
     //エリア4は全盛り
@@ -160,10 +192,12 @@ public class Manager : MonoBehaviour
             m_whiteDust.Play();
         }
         m_animator.SetBool("isCold", true);
+        //m_animator.Play(faceAnim[0].name);
         m_FXseries.SetActive(true);
         m_CharaEffect.enabled = true;
         SwitchTexture(false);
         hoge();
+        ChangeMaterial();
     }
 
     private void SwitchTexture(bool isTexture2)
@@ -197,6 +231,24 @@ public class Manager : MonoBehaviour
                 m_whiteBless.Play();
             }
             timer = 0f;
+        }
+    }
+
+    private void ChangeMaterial()
+    {
+        if(Material1.shader != standardShader)
+        {
+            Material1.shader = standardShader;
+            Material2.shader = standardShader;
+            Material3.shader = standardShader;
+            Material4.shader = standardShader;
+        }
+        else
+        {
+            Material1.shader = toonShader;
+            Material2.shader = toonShader;
+            Material3.shader = toonShader;
+            Material4.shader = toonShader;
         }
     }
 }
