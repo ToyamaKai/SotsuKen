@@ -71,16 +71,20 @@ public class Manager : MonoBehaviour
 
     private void Awake()
     {
+        standardShader = Shader.Find("Standard");
+        toonShader = Shader.Find("Toon");
         Material1 = material1;
         Material2 = material2;
         Material3 = material3;
-        Material4 = material4 ;
+        Material4 = material4;
+        Material1.shader = toonShader;
+        Material2.shader = toonShader;
+        Material3.shader = toonShader;
+        Material4.shader = toonShader;
     }
 
     private void Start()
     {
-        standardShader = Shader.Find("Standard");
-        toonShader = Shader.Find("Toon");
         m_whiteDust.Stop();
         m_CharaEffect.enabled = false;
         m_FXseries.SetActive(false);
@@ -157,69 +161,84 @@ public class Manager : MonoBehaviour
 
         AnimatorFPSController._fps = 60;
 
-        SwitchTexture(true);
+        SwitchTexture(true, 0);
     }
 
-    //エリア1は環境系エフェクト(吹雪・降雪・画面全体のラスタースクロール)
+    //エリア1は環境系エフェクト(吹雪・降雪)
     public void Area1Effect()
     {
         m_FXseries.SetActive(true);
-
-        m_postEffect.enabled = true;
         AnimatorFPSController._fps = 60;
     }
 
     //エリア2はキャラ関係のエフェクト(モーション・テクスチャ・キャララスタースクロール)
-    //寒がるモーション、しもやけテクスチャ(赤)、ラスタースクロール、モーションキーフレーム落とし、ローポリ化
+    //寒がるモーション、しもやけテクスチャ(赤)、ラスタースクロール、モーションキーフレーム落とし、ローポリ化、ホワイトダスト
     public void Area2Effect()
     {
+        if (!m_whiteDust.isPlaying)
+        {
+            m_whiteDust.Play();
+        }
+
         m_animator.SetBool("isCold", true);
 
         m_CharaEffect.enabled = true;
         m_CharaEffect2.enabled = true;
 
-        SwitchTexture(false);
+        SwitchTexture(false, 1);
         hoge();
         AnimatorFPSController._fps = 15;
     }
 
     //エリア3はエリア2の亜種(モーション・テクスチャ・キャララスタースクロール)
-    //寒がるモーション、しもやけテクスチャ(紫)、ラスタースクロール、モーションキーフレーム落とし、ローポリ化
+    //寒がるモーション、しもやけテクスチャ(紫)、ラスタースクロール、モーションキーフレーム落とし、ローポリ化、ホワイトダスト
     public void Area3Effect()
     {
+        if (!m_whiteDust.isPlaying)
+        {
+            m_whiteDust.Play();
+        }
+
         m_animator.SetBool("isCold", true);
 
         m_CharaEffect.enabled = true;
         m_CharaEffect2.enabled = true;
 
-        SwitchTexture(false);
+        SwitchTexture(false, 0);
         hoge();
         AnimatorFPSController._fps = 15;
     }
 
     //エリア4は全盛り
+    //降雪・吹雪、寒がるモーション、しもやけテクスチャ(紫)、ラスタースクロール、モーションキーフレーム落とし、ローポリ化、ホワイトダスト
     public void Area4Effect()
     {
         if (!m_whiteDust.isPlaying)
         {
             m_whiteDust.Play();
         }
+
         m_animator.SetBool("isCold", true);
-        //m_animator.Play(faceAnim[0].name);
         m_FXseries.SetActive(true);
         m_CharaEffect.enabled = true;
-        SwitchTexture(false);
+        SwitchTexture(false, 0);
         hoge();
         AnimatorFPSController._fps = 15;
     }
 
-    private void SwitchTexture(bool isTexture2)
+    private void SwitchTexture(bool isTexture2, int hoge)
     {
-        if(!isTexture2)
+        if (!isTexture2 && hoge == 0)
         {
             m_body.material.mainTexture = m_chilblainsBody;
             m_face.material.mainTexture = m_chilblainsface;
             m_eyes.material.mainTexture = m_chilblainsface;
+        }
+        else if (!isTexture2 && hoge == 1)
+        {
+            m_body.material.mainTexture = m_chilblainsBody2;
+            m_face.material.mainTexture = m_chilblainsface2;
+            m_eyes.material.mainTexture = m_chilblainsface2;
         }
         else
         {

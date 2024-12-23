@@ -15,6 +15,8 @@ public class Settings : MonoBehaviour
     Text sayuutext;
     [SerializeField]
     Button button;
+    [SerializeField]
+    GameObject SettingUI;
 
     static public float    MouseSensitivity = 2;
     static public int       MouseJougeInversion = 1;
@@ -78,5 +80,10 @@ public class Settings : MonoBehaviour
 #else
     Application.Quit();//ゲームプレイ終了
 #endif
+    }
+
+    public void CloseSetting()
+    {
+        SettingUI.SetActive(false);
     }
 }
