@@ -3,8 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class AnimatorFPSController : MonoBehaviour
 {
-    [SerializeField, Range(1, 60)]
-    int _fps = 30;
+    static public int _fps = 60;
 
     Animator _animator;
 
@@ -18,7 +17,6 @@ public class AnimatorFPSController : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _animator.enabled = false;
-        InitializeThresholdTime();
     }
 
     /// <summary>
@@ -31,6 +29,8 @@ public class AnimatorFPSController : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(_fps);
+        InitializeThresholdTime();
         _skippedTime += Time.deltaTime;
 
         if (_thresholdTime > _skippedTime)

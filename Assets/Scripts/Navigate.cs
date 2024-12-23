@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Navigate : MonoBehaviour
 {
@@ -12,10 +13,26 @@ public class Navigate : MonoBehaviour
     private List<int> remainingNumbers = new List<int> { 1, 2, 3, 4 };
     private int selectedNumber;
 
+    [SerializeField]
+    GameObject m_UI;
+
+    [SerializeField]
+    Text m_text;
+
+    [SerializeField]
+    GameObject m_player;
+
+    bool isFinish;
+
+    int num;
+
     // Start is called before the first frame update
     void Start()
     {
+        m_UI.SetActive(false);
         SelectRandomNumber();
+        isFinish = false;
+        num = 0;
     }
 
     // Update is called once per frame
@@ -26,11 +43,19 @@ public class Navigate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && remainingNumbers.Count > 0)
+        num++;
+        if (other.CompareTag("Player"))
         {
             SelectRandomNumber();
-            other.transform.position = new Vector3(0, 34, 0);
-            other.transform.rotation = Quaternion.Euler(0, 0, 0);
+            if(num < 4)
+            {
+                OpenUI(false);
+            }
+            else
+            {
+                OpenUI(true);
+                isFinish = true;
+            }
         }
     }
 
@@ -71,6 +96,39 @@ public class Navigate : MonoBehaviour
         else if (hoge == 4)
         {
             transform.position = new Vector3(373, 377, -424.7f);
+        }
+    }
+
+    private void OpenUI(bool isFin)
+    {
+        if(!isFin)
+        {
+            m_text.text = "現在のエリアはエリア" + Manager.m_areaNumber + "です。\n アンケートにお答えください";
+            m_UI.SetActive(true);
+        }
+        else
+        {
+            m_text.text = "現在のエリアはエリア" + Manager.m_areaNumber + "です。\n アンケートにお答えください\n コンテンツは以上となります。\n 引き続き残りのアンケートに\nお答えください。";
+            m_UI.SetActive(true);
+        }
+    }
+
+    public void transportOrigin()
+    {
+        if(!isFinish)
+        {
+            m_player.transform.position = new Vector3(0, 34, 0);
+            m_player.transform.rotation = Quaternion.Euler(0, 180, 0);
+            Debug.Log(m_player.transform.position);
+            m_UI.SetActive(false);
+        }
+        else
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;//ゲームプレイ終了
+#else
+    Application.Quit();//ゲームプレイ終了
+#endif
         }
     }
 }

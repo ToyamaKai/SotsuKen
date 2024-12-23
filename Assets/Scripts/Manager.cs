@@ -45,16 +45,22 @@ public class Manager : MonoBehaviour
     ParticleSystem m_whiteBless;
 
     [SerializeField]
-    Material Material1;
+    private Material material1;
     [SerializeField]
-    Material Material2;
+    private Material material2;
     [SerializeField]
-    Material Material3;
-    [SerializeField]
-    Material Material4;
+    private Material material3;
 
-    Shader standardShader;
-    Shader toonShader;
+    [SerializeField]
+    private Material material4;
+
+    static Material Material2;
+    static Material Material3;
+    static Material Material1;
+    static Material Material4;
+
+    static Shader standardShader;
+    static Shader toonShader;
 
     [SerializeField]
     AnimationClip[] faceAnim;
@@ -62,6 +68,14 @@ public class Manager : MonoBehaviour
     static public int m_areaNumber;
 
     float timer = 0f;
+
+    private void Awake()
+    {
+        Material1 = material1;
+        Material2 = material2;
+        Material3 = material3;
+        Material4 = material4 ;
+    }
 
     private void Start()
     {
@@ -141,10 +155,9 @@ public class Manager : MonoBehaviour
             m_postEffect.enabled = false;
         }
 
+        AnimatorFPSController._fps = 60;
 
         SwitchTexture(true);
-
-        ChangeMaterial();
     }
 
     //エリア1は環境系エフェクト(吹雪・降雪・画面全体のラスタースクロール)
@@ -153,7 +166,7 @@ public class Manager : MonoBehaviour
         m_FXseries.SetActive(true);
 
         m_postEffect.enabled = true;
-        ChangeMaterial();
+        AnimatorFPSController._fps = 60;
     }
 
     //エリア2はキャラ関係のエフェクト(モーション・テクスチャ・キャララスタースクロール)
@@ -167,7 +180,7 @@ public class Manager : MonoBehaviour
 
         SwitchTexture(false);
         hoge();
-        ChangeMaterial();
+        AnimatorFPSController._fps = 15;
     }
 
     //エリア3はエリア2の亜種(モーション・テクスチャ・キャララスタースクロール)
@@ -181,7 +194,7 @@ public class Manager : MonoBehaviour
 
         SwitchTexture(false);
         hoge();
-        ChangeMaterial();
+        AnimatorFPSController._fps = 15;
     }
 
     //エリア4は全盛り
@@ -197,7 +210,7 @@ public class Manager : MonoBehaviour
         m_CharaEffect.enabled = true;
         SwitchTexture(false);
         hoge();
-        ChangeMaterial();
+        AnimatorFPSController._fps = 15;
     }
 
     private void SwitchTexture(bool isTexture2)
@@ -234,9 +247,9 @@ public class Manager : MonoBehaviour
         }
     }
 
-    private void ChangeMaterial()
+    static public void ChangeMaterial(int num)
     {
-        if(Material1.shader != standardShader)
+        if(num == 2 || num == 3 || num == 4 )
         {
             Material1.shader = standardShader;
             Material2.shader = standardShader;

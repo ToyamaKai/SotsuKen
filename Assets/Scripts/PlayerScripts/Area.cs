@@ -12,6 +12,7 @@ public class Area : MonoBehaviour
         if (other.gameObject.name == "unitychan")
         {
             Manager.m_areaNumber = AreaNumber;
+            Manager.ChangeMaterial(AreaNumber);
         }
     }
 
@@ -20,6 +21,7 @@ public class Area : MonoBehaviour
         if (other.gameObject.name == "unitychan")
         {
             Manager.m_areaNumber = 0;
+            Manager.ChangeMaterial(0);
         }
     }
 }
