@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] Rigidbody m_rb; // Rigidbody
     [SerializeField] Animator m_animator; // Animator
+    [SerializeField] Animator m_animator2;
     [SerializeField] Transform cameraTransform; // カメラのTransformを指定
 
     void Update()
@@ -40,13 +41,17 @@ public class PlayerMovement : MonoBehaviour
         {
             m_dash = k_runSpeed;
             m_animator.SetBool("isWalking", false);
+            m_animator2.SetBool("isWalking", false);
             m_animator.SetBool("isRun", true);
+            m_animator2.SetBool("isRun", true);
         }
         else
         {
             m_dash = 1.0f;
             m_animator.SetBool("isWalking", v != 0 || h != 0);
+            m_animator2.SetBool("isWalking", v != 0 || h != 0);
             m_animator.SetBool("isRun", false);
+            m_animator2.SetBool("isRun", false);
         }
 
         // キャラクターの回転

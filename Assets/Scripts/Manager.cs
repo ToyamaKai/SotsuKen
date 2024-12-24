@@ -11,6 +11,8 @@ public class Manager : MonoBehaviour
     [SerializeField]
     Animator m_animator;
     [SerializeField]
+    Animator m_animator2;
+    [SerializeField]
     ParticleSystem m_whiteDust;
     [SerializeField]
     PostEffect m_CharaEffect;
@@ -87,10 +89,12 @@ public class Manager : MonoBehaviour
     {
         m_whiteDust.Stop();
         m_CharaEffect.enabled = false;
+        m_CharaEffect2.enabled = false;
         m_FXseries.SetActive(false);
         m_operate.SetActive(true);
         m_setting.SetActive(false);
         m_animator.SetLayerWeight(0, 1f);
+        m_animator2.SetLayerWeight(0,1f); 
     }
 
     // Update is called once per frame
@@ -142,6 +146,7 @@ public class Manager : MonoBehaviour
         if (m_animator.GetBool("isCold"))
         {
             m_animator.SetBool("isCold", false);
+            m_animator2.SetBool("isCold", false);
         }
 
         if (m_FXseries.activeSelf)
@@ -152,6 +157,7 @@ public class Manager : MonoBehaviour
         if(m_CharaEffect.isActiveAndEnabled)
         {
             m_CharaEffect.enabled = false;
+            m_CharaEffect2.enabled = false;
         }
 
         if (m_CharaEffect.isActiveAndEnabled)
@@ -181,6 +187,7 @@ public class Manager : MonoBehaviour
         }
 
         m_animator.SetBool("isCold", true);
+        m_animator2.SetBool("isCold", true);
 
         m_CharaEffect.enabled = true;
         m_CharaEffect2.enabled = true;
@@ -200,9 +207,10 @@ public class Manager : MonoBehaviour
         }
 
         m_animator.SetBool("isCold", true);
+        m_animator2.SetBool("isCold", true);
 
-        m_CharaEffect.enabled = true;
-        m_CharaEffect2.enabled = true;
+        m_CharaEffect.enabled = false;
+        m_CharaEffect2.enabled = false;
 
         SwitchTexture(false, 0);
         hoge();
@@ -219,8 +227,10 @@ public class Manager : MonoBehaviour
         }
 
         m_animator.SetBool("isCold", true);
+        m_animator2.SetBool("isCold", true);
         m_FXseries.SetActive(true);
         m_CharaEffect.enabled = true;
+        m_CharaEffect2.enabled = false; 
         SwitchTexture(false, 0);
         hoge();
         AnimatorFPSController._fps = 15;
@@ -268,7 +278,7 @@ public class Manager : MonoBehaviour
 
     static public void ChangeMaterial(int num)
     {
-        if(num == 2 || num == 3 || num == 4 )
+        if(num == 3 || num == 4 )
         {
             Material1.shader = standardShader;
             Material2.shader = standardShader;

@@ -6,9 +6,13 @@ using UnityEngine.UI;
 public class Settings : MonoBehaviour
 {
     [SerializeField]
+    Slider Sound;
+    [SerializeField]
     Slider MouseSensitivitySlider;
     [SerializeField]
     InputField inputField;
+    [SerializeField]
+    InputField soundInputField;
     [SerializeField]
     Text text;
     [SerializeField]
@@ -17,13 +21,19 @@ public class Settings : MonoBehaviour
     Button button;
     [SerializeField]
     GameObject SettingUI;
+    [SerializeField]
+    AudioSource m_audio;
 
     static public float    MouseSensitivity = 2;
+    static public float soundVolume = 50;
     static public int       MouseJougeInversion = 1;
     static public int       MouseSayuuInversion = 1;
 
     private void Start()
     {
+        Sound.maxValue = 100;
+        Sound.value = 50;
+        soundInputField.text = Sound.value.ToString("F0");
         MouseSensitivitySlider.maxValue = 30;
         MouseSensitivitySlider.value    = 2;
         inputField.text = MouseSensitivitySlider.value.ToString("F0");
@@ -31,6 +41,7 @@ public class Settings : MonoBehaviour
 
     private void Update()
     {
+        m_audio.volume = soundVolume;
     }
 
     public void MouseSensitivityChange()
@@ -39,10 +50,21 @@ public class Settings : MonoBehaviour
         inputField.text = MouseSensitivitySlider.value.ToString("F0");
     }
 
+    public void SoundVolumChange()
+    {
+        soundVolume = Sound.value;
+        soundInputField.text = Sound.value.ToString("F0");
+    }
+
     public void InputMouseSensitivityChange()
     {
         MouseSensitivitySlider.value = float.Parse(inputField.text);
         inputField.text = MouseSensitivitySlider.value.ToString("F0");
+    }
+    public void InputSoundVolumChange()
+    {
+        Sound.value = float.Parse(soundInputField.text);
+        soundInputField.text = Sound.value.ToString("F0");
     }
 
     public void MouseJougeInvers()
