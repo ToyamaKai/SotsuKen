@@ -3,9 +3,9 @@
 Shader "Custom/RasterScroll"{
 	Properties{
 		_MainTex("MainTex", 2D) = "white" {}
-		_Level("Level", Range(0, 100)) = 0.2
-		_Speed("Speed", Range(0, 300)) = 0.5
-		_RoundTrip("RoundTrip", Range(1, 500)) = 1
+		_Level("Level", Range(0, 1)) = 0.2
+		_Speed("Speed", Range(0, 3)) = 0.5
+		_RoundTrip("RoundTrip", Range(1, 100)) = 1
 	}
 		SubShader{
 			Pass{
