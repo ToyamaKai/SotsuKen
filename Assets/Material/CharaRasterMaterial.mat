@@ -108,7 +108,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Level: 0.006
+    - _Level: 0.002
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
@@ -117,7 +117,7 @@ Material:
     - _QueueControl: -1
     - _QueueOffset: 0
     - _RenderQueueType: 1
-    - _RoundTrip: 16
+    - _RoundTrip: 38
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _Speed: 26

@@ -75,7 +75,6 @@ public class Navigate : MonoBehaviour
         }
         else
         {
-            Debug.Log("èIÇÌÇË");
         }
     }
 
@@ -119,7 +118,6 @@ public class Navigate : MonoBehaviour
         {
             m_player.transform.position = new Vector3(0, 34, 0);
             m_player.transform.rotation = Quaternion.Euler(0, 180, 0);
-            Debug.Log(m_player.transform.position);
             m_UI.SetActive(false);
         }
         else

@@ -39,9 +39,9 @@ public class Settings : MonoBehaviour
         inputField.text = MouseSensitivitySlider.value.ToString("F0");
     }
 
-    private void Update()
+   private void Update()
     {
-        m_audio.volume = soundVolume;
+        m_audio.volume = soundVolume/100;
     }
 
     public void MouseSensitivityChange()
