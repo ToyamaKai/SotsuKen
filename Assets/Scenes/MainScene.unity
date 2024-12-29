@@ -823,6 +823,7 @@ MonoBehaviour:
   m_UI: {fileID: 644464015}
   m_text: {fileID: 1325225792}
   m_player: {fileID: 2106473497}
+  m_taskText: {fileID: 1742674846}
 --- !u!65 &106361523
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15408,7 +15409,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -637, y: 475}
+  m_AnchoredPosition: {x: -590, y: 475}
   m_SizeDelta: {x: 1000, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1742674846

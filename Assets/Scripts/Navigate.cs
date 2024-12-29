@@ -22,6 +22,9 @@ public class Navigate : MonoBehaviour
     [SerializeField]
     GameObject m_player;
 
+    [SerializeField]
+    Text m_taskText;
+
     bool isFinish;
 
     int num;
@@ -33,6 +36,7 @@ public class Navigate : MonoBehaviour
         SelectRandomNumber();
         isFinish = false;
         num = 0;
+        m_taskText.text = "タスク：緑色の光を目指せ " + (num + 1) + "/4";
     }
 
     // Update is called once per frame
@@ -56,6 +60,7 @@ public class Navigate : MonoBehaviour
                 OpenUI(true);
                 isFinish = true;
             }
+            m_taskText.text = "タスク：緑色の光を目指せ " + (num + 1) + "/4";
         }
     }
 
