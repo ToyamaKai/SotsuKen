@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Manager : MonoBehaviour
 {
@@ -55,6 +56,9 @@ public class Manager : MonoBehaviour
 
     [SerializeField]
     private Material material4;
+
+    [SerializeField]
+    Text areaNum;
 
     static Material Material2;
     static Material Material3;
@@ -133,6 +137,8 @@ public class Manager : MonoBehaviour
         {
             Area4Effect();
         }
+
+        areaNum.text = "ÉGÉäÉAî‘çÜ" + m_areaNumber;
     }
 
     public void EffectsOff()

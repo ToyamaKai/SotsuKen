@@ -87,19 +87,19 @@ public class Navigate : MonoBehaviour
     {
         if (hoge == 1)
         {
-            transform.position = new Vector3(-353, 377, 59);
+            transform.position = new Vector3(-331, 274, 216);
         }
         else if (hoge == 2)
         {
-            transform.position = new Vector3(282.6f, 377, 342.1f);
+            transform.position = new Vector3(290, 274, 269);
         }
         else if (hoge == 3)
         {
-            transform.position = new Vector3(-271, 377, -411);
+            transform.position = new Vector3(-276, 274, -313);
         }
         else if (hoge == 4)
         {
-            transform.position = new Vector3(373, 377, -424.7f);
+            transform.position = new Vector3(350, 274, -206);
         }
     }
 
