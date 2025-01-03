@@ -109,7 +109,6 @@ public class PageUI : MonoBehaviour
     {
         // UIを非アクティブにするか、必要に応じて他の動作を実行
         UI.SetActive(false);
-        Manager.mouse(true);
     }
     public void SetAreaPages(List<int> pages)
     {
@@ -119,7 +118,6 @@ public class PageUI : MonoBehaviour
 
         // 最初のページを表示
         UpdatePage(currentPageIndex);
-        Manager.mouse(false);
     }
 
 }

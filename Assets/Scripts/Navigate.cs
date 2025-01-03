@@ -107,13 +107,11 @@ public class Navigate : MonoBehaviour
     {
         if(!isFin)
         {
-            Manager.mouse(false);
             m_text.text = "現在のエリアはエリア" + Manager.m_areaNumber + "です。\n アンケートにお答えください。";
             m_UI.SetActive(true);
         }
         else
         {
-            Manager.mouse(false);
             m_text.text = "現在のエリアはエリア" + Manager.m_areaNumber + "です。\n アンケートにお答えください。\n コンテンツは以上となります。\n 引き続き残りのアンケートに\nお答えください。";
             m_UI.SetActive(true);
         }
@@ -121,7 +119,6 @@ public class Navigate : MonoBehaviour
 
     public void transportOrigin()
     {
-        Manager.mouse(true);
         if (!isFinish)
         {
             m_player.transform.position = new Vector3(0, 34, 0);

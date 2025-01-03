@@ -69,6 +69,8 @@ public class Manager : MonoBehaviour
     static Shader toonShader;
 
     [SerializeField]
+    GameObject[] Canvas;
+    [SerializeField]
     AnimationClip[] faceAnim;
 
     static public int m_areaNumber;
@@ -104,17 +106,26 @@ public class Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(AreAllInactive())
+        {
+            Debug.Log("hoge");
+            mouse(true);
+        }
+        else
+        {
+            Debug.Log("aaa");
+            mouse(false);
+        }
+
         if(Input.GetKeyDown(KeyCode.Tab))
         {
             if(!m_setting.activeSelf && !m_operate.activeSelf)
             {
                 m_setting.SetActive(true);
-                mouse(false);
             }
             else
             {
                 m_setting.SetActive(false);
-                mouse(true);
             }
         }
 
@@ -269,7 +280,6 @@ public class Manager : MonoBehaviour
     public void CloseOperate()
     {
         m_operate.SetActive(false);
-        mouse(true);
     }
 
     private void hoge()
@@ -303,7 +313,7 @@ public class Manager : MonoBehaviour
         }
     }
 
-    static public void mouse(bool isLock)
+    private void mouse(bool isLock)
     {
         if (isLock)
         {
@@ -315,5 +325,18 @@ public class Manager : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
+    }
+    // 全てのGameObjectが非アクティブかをチェック
+    private bool AreAllInactive()
+    {
+        foreach (var obj in Canvas)
+        {
+            if (obj.activeSelf) // アクティブなものが1つでもある場合
+            {
+                Debug.Log(obj);
+                return false;
+            }
+        }
+        return true; // 全て非アクティブの場合
     }
 }

@@ -111,7 +111,6 @@ public class Settings : MonoBehaviour
     public void CloseSetting()
     {
         SettingUI.SetActive(false);
-        Manager.mouse(true);
     }
 
     public void CheckEnshutu()
