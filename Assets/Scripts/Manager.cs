@@ -104,15 +104,17 @@ public class Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.Tab))
         {
             if(!m_setting.activeSelf && !m_operate.activeSelf)
             {
                 m_setting.SetActive(true);
+                mouse(false);
             }
             else
             {
                 m_setting.SetActive(false);
+                mouse(true);
             }
         }
 
@@ -267,6 +269,7 @@ public class Manager : MonoBehaviour
     public void CloseOperate()
     {
         m_operate.SetActive(false);
+        mouse(true);
     }
 
     private void hoge()
@@ -297,6 +300,20 @@ public class Manager : MonoBehaviour
             Material2.shader = toonShader;
             Material3.shader = toonShader;
             Material4.shader = toonShader;
+        }
+    }
+
+    static public void mouse(bool isLock)
+    {
+        if (isLock)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 }

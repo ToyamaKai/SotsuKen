@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class Settings : MonoBehaviour
 {
@@ -22,7 +23,9 @@ public class Settings : MonoBehaviour
     [SerializeField]
     GameObject SettingUI;
     [SerializeField]
-    AudioSource m_audio;
+    AudioMixer m_audio;
+    [SerializeField]
+    GameObject hoge;
 
     static public float    MouseSensitivity = 2;
     static public float soundVolume = 50;
@@ -37,11 +40,12 @@ public class Settings : MonoBehaviour
         MouseSensitivitySlider.maxValue = 30;
         MouseSensitivitySlider.value    = 2;
         inputField.text = MouseSensitivitySlider.value.ToString("F0");
+        m_audio.SetFloat("Master", 0);
     }
 
    private void Update()
     {
-        m_audio.volume = soundVolume/100;
+        m_audio.SetFloat("Master", Mathf.Clamp(Mathf.Log10(Mathf.Clamp(soundVolume / 100, 0f, 1f)) * 20f, -80f, 0f));
     }
 
     public void MouseSensitivityChange()
@@ -106,6 +110,13 @@ public class Settings : MonoBehaviour
 
     public void CloseSetting()
     {
+        SettingUI.SetActive(false);
+        Manager.mouse(true);
+    }
+
+    public void CheckEnshutu()
+    {
+        hoge.SetActive(true);
         SettingUI.SetActive(false);
     }
 }

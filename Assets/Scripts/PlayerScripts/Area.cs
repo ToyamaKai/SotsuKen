@@ -8,6 +8,10 @@ public class Area : MonoBehaviour
     GameObject Player1;
     [SerializeField]
     GameObject Player2;
+    [SerializeField]
+    PageUI m_PageUI;
+    [SerializeField]
+    GameObject m_setumei;
 
     [SerializeField]
     int AreaNumber;
@@ -30,6 +34,26 @@ public class Area : MonoBehaviour
                 Player2.SetActive(true);
             }
         }
+        if(AreaNumber == 1)
+        {
+            m_PageUI.SetAreaPages(new List<int> { 7 });
+            m_setumei.SetActive(true);
+        }
+        else if(AreaNumber == 2)
+        {
+            m_PageUI.SetAreaPages(new List<int> { 0, 1, 3, 4, 6 });
+            m_setumei.SetActive(true);
+        }
+        else if(AreaNumber == 3)
+        {
+            m_PageUI.SetAreaPages(new List<int> { 0, 2, 4, 5, 6 });
+            m_setumei.SetActive(true);
+        }
+        else if(AreaNumber == 4)
+        {
+            m_PageUI.SetAreaPages(new List<int> { 0, 2, 3, 4, 5, 6, 7 });
+            m_setumei.SetActive(true);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -44,5 +68,8 @@ public class Area : MonoBehaviour
                 Player1.SetActive(true);
             }
         }
+
+        m_PageUI.SetAreaPages(new List<int> { 8 });
+        m_setumei.SetActive(false);
     }
 }

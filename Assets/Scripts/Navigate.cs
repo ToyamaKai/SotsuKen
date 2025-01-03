@@ -60,7 +60,7 @@ public class Navigate : MonoBehaviour
                 OpenUI(true);
                 isFinish = true;
             }
-            m_taskText.text = "タスク：緑色の光を目指せ " + (num + 1) + "/4";
+            m_taskText.text = "タスク：緑色の光を目指せ " + num + "/4";
         }
     }
 
@@ -107,19 +107,22 @@ public class Navigate : MonoBehaviour
     {
         if(!isFin)
         {
-            m_text.text = "現在のエリアはエリア" + Manager.m_areaNumber + "です。\n アンケートにお答えください";
+            Manager.mouse(false);
+            m_text.text = "現在のエリアはエリア" + Manager.m_areaNumber + "です。\n アンケートにお答えください。";
             m_UI.SetActive(true);
         }
         else
         {
-            m_text.text = "現在のエリアはエリア" + Manager.m_areaNumber + "です。\n アンケートにお答えください\n コンテンツは以上となります。\n 引き続き残りのアンケートに\nお答えください。";
+            Manager.mouse(false);
+            m_text.text = "現在のエリアはエリア" + Manager.m_areaNumber + "です。\n アンケートにお答えください。\n コンテンツは以上となります。\n 引き続き残りのアンケートに\nお答えください。";
             m_UI.SetActive(true);
         }
     }
 
     public void transportOrigin()
     {
-        if(!isFinish)
+        Manager.mouse(true);
+        if (!isFinish)
         {
             m_player.transform.position = new Vector3(0, 34, 0);
             m_player.transform.rotation = Quaternion.Euler(0, 180, 0);

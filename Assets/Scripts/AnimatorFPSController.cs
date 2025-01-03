@@ -5,7 +5,10 @@ public class AnimatorFPSController : MonoBehaviour
 {
     static public int _fps = 60;
 
+    [SerializeField]
     Animator _animator;
+    [SerializeField]
+    Animator m_animator;
 
     /// <summary>しきい値時間</summary>
     float _thresholdTime;
@@ -15,8 +18,8 @@ public class AnimatorFPSController : MonoBehaviour
 
     private void Awake()
     {
-        _animator = GetComponent<Animator>();
         _animator.enabled = false;
+        m_animator.enabled = false;
     }
 
     /// <summary>
@@ -39,6 +42,7 @@ public class AnimatorFPSController : MonoBehaviour
 
         // アニメーションの時間を計算する
         _animator.Update(_skippedTime);
+        m_animator.Update(_skippedTime);
         _skippedTime = 0f;
     }
 
