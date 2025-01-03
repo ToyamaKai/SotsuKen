@@ -2559,7 +2559,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &644464016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3491,6 +3491,7 @@ MonoBehaviour:
   m_CharaEffect2: {fileID: 1873365178}
   m_postEffect: {fileID: 2107899901}
   m_FXseries: {fileID: 2131818448}
+  m_audio: {fileID: 24100000, guid: a47d07f36279e45459b53f26f9086727, type: 2}
   m_body: {fileID: 468005339}
   m_chilblainsBody: {fileID: 2800000, guid: 33237d0d6b5a25f4bb123d186067cbce, type: 3}
   m_chilblainsBody2: {fileID: 2800000, guid: cd10a053112745446b378b47ea885e51, type: 3}
@@ -3506,6 +3507,11 @@ MonoBehaviour:
   material3: {fileID: 2100000, guid: 5ebb6caef8207d243a588a574971408c, type: 2}
   material4: {fileID: 2100000, guid: ca131910d5c9a634dbdd38e77111033f, type: 2}
   areaNum: {fileID: 1474524168}
+  Canvas:
+  - {fileID: 975880252}
+  - {fileID: 944639846}
+  - {fileID: 2067671330}
+  - {fileID: 644464015}
   faceAnim:
   - {fileID: 7400000, guid: ff6c11476f4e91241aab382c6db91b01, type: 2}
 --- !u!4 &941340267

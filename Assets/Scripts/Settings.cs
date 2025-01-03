@@ -43,11 +43,6 @@ public class Settings : MonoBehaviour
         m_audio.SetFloat("Master", 0);
     }
 
-   private void Update()
-    {
-        m_audio.SetFloat("Master", Mathf.Clamp(Mathf.Log10(Mathf.Clamp(soundVolume / 100, 0f, 1f)) * 20f, -80f, 0f));
-    }
-
     public void MouseSensitivityChange()
     {
         MouseSensitivity = MouseSensitivitySlider.value;

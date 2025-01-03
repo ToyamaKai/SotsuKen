@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class Manager : MonoBehaviour
@@ -23,6 +24,8 @@ public class Manager : MonoBehaviour
     PostEffect m_postEffect;
     [SerializeField]
     GameObject m_FXseries;
+    [SerializeField]
+    AudioMixer m_audio;
 
     [SerializeField]
     Renderer m_body;
@@ -100,20 +103,19 @@ public class Manager : MonoBehaviour
         m_operate.SetActive(true);
         m_setting.SetActive(false);
         m_animator.SetLayerWeight(0, 1f);
-        m_animator2.SetLayerWeight(0,1f); 
+        m_animator2.SetLayerWeight(0,1f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(AreAllInactive())
+        m_audio.SetFloat("Master", Mathf.Clamp(Mathf.Log10(Mathf.Clamp(Settings.soundVolume / 100, 0f, 1f)) * 20f, -80f, 0f));
+        if (AreAllInactive())
         {
-            Debug.Log("hoge");
             mouse(true);
         }
         else
         {
-            Debug.Log("aaa");
             mouse(false);
         }
 
@@ -333,7 +335,6 @@ public class Manager : MonoBehaviour
         {
             if (obj.activeSelf) // アクティブなものが1つでもある場合
             {
-                Debug.Log(obj);
                 return false;
             }
         }

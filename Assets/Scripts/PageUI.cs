@@ -50,7 +50,6 @@ public class PageUI : MonoBehaviour
         contentImage.sprite = page.image;
 
         // サイズ変更を強制適用
-        Debug.Log($"ScriptableObjectから取得した画像サイズ: {page.imageSize}");
         imageRectTransform.sizeDelta = page.imageSize;
 
         // サイズを強制適用する代替方法
