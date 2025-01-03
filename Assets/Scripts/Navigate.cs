@@ -24,18 +24,40 @@ public class Navigate : MonoBehaviour
 
     [SerializeField]
     Text m_taskText;
+
     [SerializeField]
-    GameObject m_setumei;
+    GameObject[] m_areaCollision;
 
-    bool isFinish;
+    [SerializeField]
+    GameObject m_button;
 
-    int num;
+    [SerializeField]
+    GameObject Player1;
+    [SerializeField]
+    GameObject Player2;
+    [SerializeField]
+    Button m_buttonHoge;
+    [SerializeField]
+    BoxCollider m_collise;
+
+    //[SerializeField]
+    //GameObject m_setumei;
+
+    private bool isFinish;
+    private int num;
+    private int hogenum;
 
     static public bool hoge;
+    static public int m_nowNum;
 
     // Start is called before the first frame update
     void Start()
     {
+        foreach(GameObject obj in m_areaCollision)
+        {
+            obj.SetActive(false);
+        }
+
         m_UI.SetActive(false);
         SelectRandomNumber();
         isFinish = false;
@@ -52,21 +74,37 @@ public class Navigate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        num++;
         if (other.CompareTag("Player"))
         {
-            SelectRandomNumber();
             if(num < 4)
             {
-                m_setumei.SetActive(true);
+                //m_setumei.SetActive(true);
+                OpenUI(false);
                 hoge = false;
             }
             else
             {
-                m_setumei.SetActive(true);
+                //m_setumei.SetActive(true);
+                OpenUI(true);
                 hoge = true;
             }
-            m_taskText.text = "タスク：緑色の光を目指せ " + num + "/4";
+
+            if (m_nowNum == 1)
+            {
+                m_player.transform.position = new Vector3(-100, m_player.transform.position.y, 100);
+            }
+            else if (m_nowNum == 2)
+            {
+                m_player.transform.position = new Vector3(175, m_player.transform.position.y, 50);
+            }
+            else if (m_nowNum == 3)
+            {
+                m_player.transform.position = new Vector3(-75, m_player.transform.position.y, -300);
+            }
+            else if (m_nowNum == 4)
+            {
+                m_player.transform.position = new Vector3(175, m_player.transform.position.y, -65);
+            }
         }
     }
 
@@ -76,13 +114,14 @@ public class Navigate : MonoBehaviour
         {
             // ランダムに番号を選択
             int randomIndex = Random.Range(0, remainingNumbers.Count);
-            selectedNumber = remainingNumbers[randomIndex];
+            m_nowNum = remainingNumbers[randomIndex];
+            m_areaCollision[m_nowNum-1].SetActive(true);
 
             // 使用済みの番号をリストから削除
             remainingNumbers.RemoveAt(randomIndex);
 
             // 位置を変更
-            ChangePosition(selectedNumber);
+            ChangePosition(m_nowNum);
         }
         else
         {
@@ -95,19 +134,19 @@ public class Navigate : MonoBehaviour
     {
         if (hoge == 1)
         {
-            transform.position = new Vector3(-246, 274, 172);
+            transform.position = new Vector3(-125, 200, 130);
         }
         else if (hoge == 2)
         {
-            transform.position = new Vector3(232, 274, 223);
+            transform.position = new Vector3(200, 200, 75);
         }
         else if (hoge == 3)
         {
-            transform.position = new Vector3(-247, 274, -301);
+            transform.position = new Vector3(-100, 200, -330);
         }
         else if (hoge == 4)
         {
-            transform.position = new Vector3(350, 274, -206);
+            transform.position = new Vector3(200, 200, -90);
         }
         else
         {
@@ -115,27 +154,84 @@ public class Navigate : MonoBehaviour
         }
     }
 
-    public void OpenUI(bool isFin)
+    public void announce()
     {
-        if(!isFin)
+        m_button.SetActive(false);
+
+        // リスナーをクリア
+        m_buttonHoge.onClick.RemoveAllListeners();
+
+        // 必要なリスナーを追加
+        m_buttonHoge.onClick.AddListener(CloseUI);
+
+        if (m_nowNum == 1)
         {
-            m_text.text = "現在のエリアはエリア" + Manager.m_areaNumber + "です。\n アンケートにお答えください。";
+            m_text.text = "エリア" + m_nowNum + "に入りました。 \n エフェクトに注目して \n 操作してください。";
+            m_UI.SetActive(true);
+        }
+        else if (m_nowNum == 4)
+        {
+            m_text.text = "エリア" + m_nowNum + "に入りました。 \n キャラとエフェクトに注目して \n 操作してください。";
             m_UI.SetActive(true);
         }
         else
         {
-            m_text.text = "現在のエリアはエリア" + Manager.m_areaNumber + "です。\n アンケートにお答えください。\n コンテンツは以上となります。\n 引き続き残りのアンケートに\nお答えください。";
+            m_text.text = "エリア" + m_nowNum + "に入りました。 \n キャラクターに注目して \n 操作してください。";
             m_UI.SetActive(true);
         }
     }
 
+    public void CloseUI()
+    {
+        m_UI.SetActive(false);
+    }
+
+    public void OpenUI(bool isFin)
+    {
+        m_button.SetActive(true);
+        // リスナーをクリア
+        m_buttonHoge.onClick.RemoveAllListeners();
+
+        // 必要なリスナーを追加
+        m_buttonHoge.onClick.AddListener(CloseUI);
+        if (!isFin)
+        {
+            m_text.text = "現在のエリアはエリア" + m_nowNum + "です。\n アンケートにお答えください。";
+            m_UI.SetActive(true);
+        }
+        else
+        {
+            m_text.text = "現在のエリアはエリア" + m_nowNum + "です。\n アンケートにお答えください。\n コンテンツは以上となります。\n 引き続き残りのアンケートに\nお答えください。";
+            m_UI.SetActive(true);
+        }
+    }
+
+    public void cancel()
+    {
+        m_UI.SetActive(false);
+    }
+
     public void transportOrigin()
     {
+        num++;
+        hogenum = m_nowNum - 1;
+        SelectRandomNumber();
+        m_taskText.text = "タスク：緑色の光を目指せ " + num + "/4";
+
         if (!isFinish)
         {
-            m_player.transform.position = new Vector3(0, 34, 0);
+            Manager.ChangeMaterial(0);
+            if (Manager.m_areaNumber == 3 || Manager.m_areaNumber == 4)
+            {
+                Player2.SetActive(false);
+                Player1.SetActive(true);
+            }
+            Manager.m_areaNumber = 0;
+            m_player.transform.position = new Vector3(23, 20, -107);
             m_player.transform.rotation = Quaternion.Euler(0, 180, 0);
+            Debug.Log(2);
             m_UI.SetActive(false);
+            m_areaCollision[hogenum].SetActive(false);
         }
         else
         {

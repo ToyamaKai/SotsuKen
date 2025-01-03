@@ -24,8 +24,8 @@ public class Settings : MonoBehaviour
     GameObject SettingUI;
     [SerializeField]
     AudioMixer m_audio;
-    [SerializeField]
-    GameObject hoge;
+    //[SerializeField]
+    //GameObject hoge;
 
     static public float    MouseSensitivity = 2;
     static public float soundVolume = 50;
@@ -110,7 +110,7 @@ public class Settings : MonoBehaviour
 
     public void CheckEnshutu()
     {
-        hoge.SetActive(true);
+        //hoge.SetActive(true);
         SettingUI.SetActive(false);
     }
 }
