@@ -825,6 +825,7 @@ MonoBehaviour:
   m_text: {fileID: 1325225792}
   m_player: {fileID: 2106473497}
   m_taskText: {fileID: 1742674846}
+  m_setumei: {fileID: 2067671330}
 --- !u!65 &106361523
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -905,7 +906,7 @@ Transform:
   m_GameObject: {fileID: 106361521}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -331.9, y: 274, z: 216}
+  m_LocalPosition: {x: -246.1, y: 274, z: 172.9}
   m_LocalScale: {x: 37.83, y: 462.24475, z: 37.83}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2229,7 +2230,6 @@ MonoBehaviour:
   Player1: {fileID: 759683114}
   Player2: {fileID: 723159224}
   m_PageUI: {fileID: 1889073918}
-  m_setumei: {fileID: 2067671330}
   AreaNumber: 2
 --- !u!1 &559013201
 GameObject:
@@ -2808,12 +2808,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7821185135710949934, guid: 2018467bcfa90c44d9fab0ad0e1e7b9d, type: 3}
   m_PrefabInstance: {fileID: 1026466187}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &723159226 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 7821185135701343368, guid: 2018467bcfa90c44d9fab0ad0e1e7b9d, type: 3}
-  m_PrefabInstance: {fileID: 1026466187}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &723159227
+--- !u!114 &723159226
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2826,7 +2821,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_runAudioSource: {fileID: 2106473505}
-  m_runAudio: {fileID: 8300000, guid: af5d2ce8b11f49448b6fec8e4093a495, type: 3}
+  m_runAudio: {fileID: 0}
+--- !u!95 &723159227 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7821185135701343368, guid: 2018467bcfa90c44d9fab0ad0e1e7b9d, type: 3}
+  m_PrefabInstance: {fileID: 1026466187}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &729704287
 GameObject:
   m_ObjectHideFlags: 0
@@ -3485,7 +3485,7 @@ MonoBehaviour:
   m_setting: {fileID: 975880252}
   m_operate: {fileID: 944639846}
   m_animator: {fileID: 1504594445}
-  m_animator2: {fileID: 723159226}
+  m_animator2: {fileID: 723159227}
   m_whiteDust: {fileID: 1108903229}
   m_CharaEffect: {fileID: 2107899901}
   m_CharaEffect2: {fileID: 1873365178}
@@ -3813,6 +3813,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1504594446}
     m_Modifications:
+    - target: {fileID: 7821185135701343368, guid: 2018467bcfa90c44d9fab0ad0e1e7b9d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7821185135710719488, guid: 2018467bcfa90c44d9fab0ad0e1e7b9d, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -4541,7 +4545,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7821185135710719502, guid: 2018467bcfa90c44d9fab0ad0e1e7b9d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 723159227}
+      addedObject: {fileID: 723159226}
   m_SourcePrefab: {fileID: 100100000, guid: 2018467bcfa90c44d9fab0ad0e1e7b9d, type: 3}
 --- !u!4 &1063629530 stripped
 Transform:
@@ -9727,7 +9731,6 @@ MonoBehaviour:
   Player1: {fileID: 759683114}
   Player2: {fileID: 723159224}
   m_PageUI: {fileID: 1889073918}
-  m_setumei: {fileID: 2067671330}
   AreaNumber: 1
 --- !u!1 &1214438697
 GameObject:
@@ -15594,7 +15597,7 @@ PrefabInstance:
     - target: {fileID: 6063561240575184088, guid: 91919f58bd9aac240b5a0e95ba69ad6f, type: 3}
       propertyPath: m_animator2
       value: 
-      objectReference: {fileID: 723159226}
+      objectReference: {fileID: 723159227}
     - target: {fileID: 6770858970312303739, guid: 91919f58bd9aac240b5a0e95ba69ad6f, type: 3}
       propertyPath: m_Name
       value: BackGround
@@ -16360,7 +16363,6 @@ MonoBehaviour:
   Player1: {fileID: 759683114}
   Player2: {fileID: 723159224}
   m_PageUI: {fileID: 1889073918}
-  m_setumei: {fileID: 2067671330}
   AreaNumber: 4
 --- !u!1 &1742674844
 GameObject:
@@ -16661,7 +16663,6 @@ MonoBehaviour:
   Player1: {fileID: 759683114}
   Player2: {fileID: 723159224}
   m_PageUI: {fileID: 1889073918}
-  m_setumei: {fileID: 2067671330}
   AreaNumber: 3
 --- !u!1 &1783801540
 GameObject:
@@ -17687,6 +17688,7 @@ MonoBehaviour:
   closeButton: {fileID: 310321721}
   UI: {fileID: 2067671330}
   pageCollection: {fileID: 11400000, guid: 3cf7c8dd22f3c6047ab917e0d67d6c04, type: 2}
+  navigate: {fileID: 106361522}
 --- !u!1 &1942177131
 GameObject:
   m_ObjectHideFlags: 0
@@ -17945,7 +17947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 1504594445}
-  m_animator: {fileID: 723159226}
+  m_animator: {fileID: 723159227}
 --- !u!82 &2106473505
 AudioSource:
   m_ObjectHideFlags: 0

@@ -24,10 +24,14 @@ public class Navigate : MonoBehaviour
 
     [SerializeField]
     Text m_taskText;
+    [SerializeField]
+    GameObject m_setumei;
 
     bool isFinish;
 
     int num;
+
+    static public bool hoge;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +41,7 @@ public class Navigate : MonoBehaviour
         isFinish = false;
         num = 0;
         m_taskText.text = "タスク：緑色の光を目指せ " + (num + 1) + "/4";
+        hoge = false;
     }
 
     // Update is called once per frame
@@ -53,12 +58,13 @@ public class Navigate : MonoBehaviour
             SelectRandomNumber();
             if(num < 4)
             {
-                OpenUI(false);
+                m_setumei.SetActive(true);
+                hoge = false;
             }
             else
             {
-                OpenUI(true);
-                isFinish = true;
+                m_setumei.SetActive(true);
+                hoge = true;
             }
             m_taskText.text = "タスク：緑色の光を目指せ " + num + "/4";
         }
@@ -80,6 +86,8 @@ public class Navigate : MonoBehaviour
         }
         else
         {
+            // 位置を変更
+            ChangePosition(5);
         }
     }
 
@@ -87,23 +95,27 @@ public class Navigate : MonoBehaviour
     {
         if (hoge == 1)
         {
-            transform.position = new Vector3(-331, 274, 216);
+            transform.position = new Vector3(-246, 274, 172);
         }
         else if (hoge == 2)
         {
-            transform.position = new Vector3(290, 274, 269);
+            transform.position = new Vector3(232, 274, 223);
         }
         else if (hoge == 3)
         {
-            transform.position = new Vector3(-276, 274, -313);
+            transform.position = new Vector3(-247, 274, -301);
         }
         else if (hoge == 4)
         {
             transform.position = new Vector3(350, 274, -206);
         }
+        else
+        {
+            transform.position = new Vector3(99999, 999999, 99999);
+        }
     }
 
-    private void OpenUI(bool isFin)
+    public void OpenUI(bool isFin)
     {
         if(!isFin)
         {

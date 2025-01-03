@@ -16,6 +16,7 @@ public class PageUI : MonoBehaviour
 
     public PageCollection pageCollection; // ページデータをまとめたScriptableObject
 
+    public Navigate navigate;
     private int currentPageIndex = 0;
     private List<int> activePages = new List<int>(); // 現在のエリアで表示するページのインデックス
 
@@ -108,6 +109,7 @@ public class PageUI : MonoBehaviour
     {
         // UIを非アクティブにするか、必要に応じて他の動作を実行
         UI.SetActive(false);
+        navigate.OpenUI(Navigate.hoge);
     }
     public void SetAreaPages(List<int> pages)
     {

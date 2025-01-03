@@ -32,6 +32,7 @@ public class AnimatorFPSController : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(_fps);
         InitializeThresholdTime();
         _skippedTime += Time.deltaTime;
 

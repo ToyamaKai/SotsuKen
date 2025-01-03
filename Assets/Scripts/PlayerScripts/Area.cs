@@ -10,8 +10,6 @@ public class Area : MonoBehaviour
     GameObject Player2;
     [SerializeField]
     PageUI m_PageUI;
-    [SerializeField]
-    GameObject m_setumei;
 
     [SerializeField]
     int AreaNumber;
@@ -37,22 +35,18 @@ public class Area : MonoBehaviour
         if(AreaNumber == 1)
         {
             m_PageUI.SetAreaPages(new List<int> { 7 });
-            m_setumei.SetActive(true);
         }
         else if(AreaNumber == 2)
         {
             m_PageUI.SetAreaPages(new List<int> { 0, 1, 3, 4, 6 });
-            m_setumei.SetActive(true);
         }
         else if(AreaNumber == 3)
         {
             m_PageUI.SetAreaPages(new List<int> { 0, 2, 4, 5, 6 });
-            m_setumei.SetActive(true);
         }
         else if(AreaNumber == 4)
         {
             m_PageUI.SetAreaPages(new List<int> { 0, 2, 3, 4, 5, 6, 7 });
-            m_setumei.SetActive(true);
         }
     }
 
@@ -70,6 +64,5 @@ public class Area : MonoBehaviour
         }
 
         m_PageUI.SetAreaPages(new List<int> { 8 });
-        m_setumei.SetActive(false);
     }
 }
