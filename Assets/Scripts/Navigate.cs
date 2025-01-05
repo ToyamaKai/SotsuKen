@@ -38,7 +38,7 @@ public class Navigate : MonoBehaviour
     [SerializeField]
     Button m_buttonHoge;
     [SerializeField]
-    BoxCollider m_collise;
+    Text text;
 
     //[SerializeField]
     //GameObject m_setumei;
@@ -53,7 +53,8 @@ public class Navigate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach(GameObject obj in m_areaCollision)
+        Screen.SetResolution(1280, 720, false);
+        foreach (GameObject obj in m_areaCollision)
         {
             obj.SetActive(false);
         }
@@ -76,7 +77,8 @@ public class Navigate : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if(num < 4)
+            Debug.Log(num);
+            if(num < 3)
             {
                 //m_setumei.SetActive(true);
                 OpenUI(false);
@@ -91,19 +93,19 @@ public class Navigate : MonoBehaviour
 
             if (m_nowNum == 1)
             {
-                m_player.transform.position = new Vector3(-100, m_player.transform.position.y, 100);
+                m_player.transform.position = new Vector3(-100, 38, 100);
             }
             else if (m_nowNum == 2)
             {
-                m_player.transform.position = new Vector3(175, m_player.transform.position.y, 50);
+                m_player.transform.position = new Vector3(175, 28, 50);
             }
             else if (m_nowNum == 3)
             {
-                m_player.transform.position = new Vector3(-75, m_player.transform.position.y, -300);
+                m_player.transform.position = new Vector3(-75, 24, -300);
             }
             else if (m_nowNum == 4)
             {
-                m_player.transform.position = new Vector3(175, m_player.transform.position.y, -65);
+                m_player.transform.position = new Vector3(175, 35, -65);
             }
         }
     }
@@ -157,6 +159,7 @@ public class Navigate : MonoBehaviour
     public void announce()
     {
         m_button.SetActive(false);
+        text.text = "閉じる";
 
         // リスナーをクリア
         m_buttonHoge.onClick.RemoveAllListeners();
@@ -166,12 +169,12 @@ public class Navigate : MonoBehaviour
 
         if (m_nowNum == 1)
         {
-            m_text.text = "エリア" + m_nowNum + "に入りました。 \n エフェクトに注目して \n 操作してください。";
+            m_text.text = "エリア" + m_nowNum + "に入りました。 \n 画面の効果に注目して \n 操作してください。";
             m_UI.SetActive(true);
         }
         else if (m_nowNum == 4)
         {
-            m_text.text = "エリア" + m_nowNum + "に入りました。 \n キャラとエフェクトに注目して \n 操作してください。";
+            m_text.text = "エリア" + m_nowNum + "に入りました。 \n 画面全体に注目して \n 操作してください。";
             m_UI.SetActive(true);
         }
         else
@@ -189,6 +192,7 @@ public class Navigate : MonoBehaviour
     public void OpenUI(bool isFin)
     {
         m_button.SetActive(true);
+        text.text = "閉じて画面を確認";
         // リスナーをクリア
         m_buttonHoge.onClick.RemoveAllListeners();
 

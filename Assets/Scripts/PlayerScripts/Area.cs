@@ -53,4 +53,12 @@ public class Area : MonoBehaviour
         //    m_PageUI.SetAreaPages(new List<int> { 0, 2, 3, 4, 5, 6, 7 });
         //}
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.name == "unitychan")
+        {
+            Manager.m_areaNumber = 0;
+        }
+    }
 }
