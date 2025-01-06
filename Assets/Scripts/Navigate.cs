@@ -53,7 +53,7 @@ public class Navigate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Screen.SetResolution(1280, 720, false);
+        //Screen.SetResolution(1920, 1080, true);
         foreach (GameObject obj in m_areaCollision)
         {
             obj.SetActive(false);
