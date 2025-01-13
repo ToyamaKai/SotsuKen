@@ -48,6 +48,13 @@ public class Manager : MonoBehaviour
     Texture m_facetex;
 
     [SerializeField]
+    Renderer body;
+    [SerializeField]
+    Renderer face;
+    [SerializeField]
+    Renderer eyes;
+
+    [SerializeField]
     ParticleSystem m_whiteBless;
 
     [SerializeField]
@@ -152,7 +159,6 @@ public class Manager : MonoBehaviour
         {
             Area4Effect();
         }
-
         areaNum.text = "ÉGÉäÉAî‘çÜ" + m_areaNumber;
     }
 
@@ -259,23 +265,26 @@ public class Manager : MonoBehaviour
 
     private void SwitchTexture(bool isTexture2, int hoge)
     {
-        if (!isTexture2 && hoge == 0)
+        if (!isTexture2)
         {
-            m_body.material.mainTexture = m_chilblainsBody;
-            m_face.material.mainTexture = m_chilblainsface;
-            m_eyes.material.mainTexture = m_chilblainsface;
+            if (hoge == 0)
+            {
+                m_body.material.mainTexture = m_chilblainsBody;
+                m_face.material.mainTexture = m_chilblainsface;
+                m_eyes.material.mainTexture = m_chilblainsface;
+            }
+            else if(hoge == 1)
+            {
+                body.material.mainTexture = m_chilblainsBody2;
+                face.material.mainTexture = m_chilblainsface2;
+                eyes.material.mainTexture = m_chilblainsface2;
+            }
         }
-        else if (!isTexture2 && hoge == 1)
+        else if(isTexture2)
         {
-            m_body.material.mainTexture = m_chilblainsBody2;
-            m_face.material.mainTexture = m_chilblainsface2;
-            m_eyes.material.mainTexture = m_chilblainsface2;
-        }
-        else
-        {
-            m_body.material.mainTexture = m_bodytex;
-            m_face.material.mainTexture = m_facetex;
-            m_eyes.material.mainTexture = m_facetex;
+            body.material.mainTexture = m_bodytex;
+            face.material.mainTexture = m_facetex;
+            eyes.material.mainTexture = m_facetex;
         }
     }
 
@@ -302,16 +311,16 @@ public class Manager : MonoBehaviour
         if(num == 3 || num == 4 )
         {
             Material1.shader = standardShader;
-            Material2.shader = standardShader;
+            //Material2.shader = standardShader;
             Material3.shader = standardShader;
-            Material4.shader = standardShader;
+            //Material4.shader = standardShader;
         }
         else
         {
             Material1.shader = toonShader;
-            Material2.shader = toonShader;
+            //Material2.shader = toonShader;
             Material3.shader = toonShader;
-            Material4.shader = toonShader;
+            //Material4.shader = toonShader;
         }
     }
 

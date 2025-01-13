@@ -1257,6 +1257,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2131818450}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &143537648 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 286576569058974035, guid: 91919f58bd9aac240b5a0e95ba69ad6f, type: 3}
+  m_PrefabInstance: {fileID: 1485156428}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &191857579
 GameObject:
   m_ObjectHideFlags: 0
@@ -1510,6 +1515,11 @@ RectTransform:
 --- !u!198 &262540344 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 3851707181600271356, guid: 91919f58bd9aac240b5a0e95ba69ad6f, type: 3}
+  m_PrefabInstance: {fileID: 1485156428}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &272633151 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 286576569058974021, guid: 91919f58bd9aac240b5a0e95ba69ad6f, type: 3}
   m_PrefabInstance: {fileID: 1485156428}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &419888644
@@ -3043,6 +3053,9 @@ MonoBehaviour:
   m_chilblainsface: {fileID: 2800000, guid: 750d18d21e9c71943b966a4282c3bdad, type: 3}
   m_chilblainsface2: {fileID: 2800000, guid: 5f9a08712597a264f8cb9c3deb4555aa, type: 3}
   m_facetex: {fileID: 2800000, guid: 3cf2e516b5353d5499c41818747b4155, type: 3}
+  body: {fileID: 1613819334}
+  face: {fileID: 143537648}
+  eyes: {fileID: 272633151}
   m_whiteBless: {fileID: 2107800845}
   material1: {fileID: 2100000, guid: bb570020a8c3bad4bbf803af20e78937, type: 2}
   material2: {fileID: 2100000, guid: 4d83bd267b90e934e88637afcd02cb8a, type: 2}
@@ -14430,7 +14443,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.5
-  m_Text: "W\uFF1A \u524D\u9032\nS \uFF1A \u5F8C\u9000\nD \uFF1A \u5DE6\u6298\nA
+  m_Text: "W\uFF1A \u524D\u9032\nS \uFF1A \u5F8C\u9000\nA \uFF1A \u5DE6\u6298\nD
     \uFF1A \u53F3\u6298"
 --- !u!222 &1359134513
 CanvasRenderer:
@@ -15297,6 +15310,11 @@ RectTransform:
   m_AnchoredPosition: {x: 420, y: 100}
   m_SizeDelta: {x: 160, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!137 &1613819334 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 286576569058974041, guid: 91919f58bd9aac240b5a0e95ba69ad6f, type: 3}
+  m_PrefabInstance: {fileID: 1485156428}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1649077621
 GameObject:
   m_ObjectHideFlags: 0
